@@ -454,7 +454,7 @@ namespace Unreal_Binary_Builder
                 {
                     if (SupportHTML5())
 					{
-						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithHTML5={7} -set:WithSwitch={8} -set:WithPS4={9} -set:WithXboxOne={10} -set:WithLumin={11}",
+						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithHTML5={7} -set:WithLumin={8}", // -set:WithSwitch={8} -set:WithPS4={9} -set:WithXboxOne={10}
 						GetConditionalString(bWithWin64.IsChecked),
 						GetConditionalString(bWithWin32.IsChecked),
 						GetConditionalString(bWithMac.IsChecked),
@@ -463,14 +463,14 @@ namespace Unreal_Binary_Builder
 						GetConditionalString(bWithTVOS.IsChecked),
 						GetConditionalString(bWithLinux.IsChecked),
 						GetConditionalString(bWithHTML5.IsChecked),
-						GetConditionalString(bWithSwitch.IsChecked),
-						GetConditionalString(bWithPS4.IsChecked),
-						GetConditionalString(bWithXboxOne.IsChecked),
+						// GetConditionalString(bWithSwitch.IsChecked),
+						// GetConditionalString(bWithPS4.IsChecked),
+						// GetConditionalString(bWithXboxOne.IsChecked),
 						GetConditionalString(bWithLumin.IsChecked));
 					}
 					else
 					{
-						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithSwitch={7} -set:WithPS4={8} -set:WithXboxOne={9} -set:WithLumin={10}",
+						CommandLineArgs += string.Format(" -set:WithWin64={0} -set:WithWin32={1} -set:WithMac={2} -set:WithAndroid={3} -set:WithIOS={4} -set:WithTVOS={5} -set:WithLinux={6} -set:WithLumin={7}", // -set:WithSwitch={7} -set:WithPS4={8} -set:WithXboxOne={9}
 						GetConditionalString(bWithWin64.IsChecked),
 						GetConditionalString(bWithWin32.IsChecked),
 						GetConditionalString(bWithMac.IsChecked),
@@ -478,11 +478,24 @@ namespace Unreal_Binary_Builder
 						GetConditionalString(bWithIOS.IsChecked),
 						GetConditionalString(bWithTVOS.IsChecked),
 						GetConditionalString(bWithLinux.IsChecked),
-						GetConditionalString(bWithSwitch.IsChecked),
-						GetConditionalString(bWithPS4.IsChecked),
-						GetConditionalString(bWithXboxOne.IsChecked),
+						// GetConditionalString(bWithSwitch.IsChecked),
+						// GetConditionalString(bWithPS4.IsChecked),
+						// GetConditionalString(bWithXboxOne.IsChecked),
 						GetConditionalString(bWithLumin.IsChecked));
 					}
+
+                    if ((bool)bWithSwitch.IsChecked)
+                    {
+                        CommandLineArgs += $" -set:WithSwitch={GetConditionalString(bWithSwitch.IsChecked)}";
+                    }
+                    if ((bool)bWithPS4.IsChecked)
+                    {
+                        CommandLineArgs += $" -set:WithPS4={GetConditionalString(bWithPS4.IsChecked)}";
+                    }
+                    if ((bool)bWithXboxOne.IsChecked)
+                    {
+                        CommandLineArgs += $" -set:WithXboxOne={GetConditionalString(bWithXboxOne.IsChecked)}";
+                    }
 
 					if (SupportLinuxAArch64()) 
                     {
@@ -561,6 +574,12 @@ namespace Unreal_Binary_Builder
             postBuildSettings.Close();
             postBuildSettings = null;
             Application.Current.Shutdown();
+        }
+
+        private void Zip_Click(object sender, RoutedEventArgs e)
+        {
+            FinalBuildPath = Path.GetFullPath(AutomationExePath).Replace(@"\Engine\Binaries\DotNET", @"\Engine").Replace(Path.GetFileName(AutomationExePath), "");
+            OnBuildFinished(true);
         }
 
 		private void PostBuildSettings_Click(object sender, RoutedEventArgs e)

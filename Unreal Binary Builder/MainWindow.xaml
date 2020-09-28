@@ -151,16 +151,18 @@
 				<ComboBoxItem x:Name="comboBoxItem1" Content="4.22"/>
 				<ComboBoxItem x:Name="comboBoxItem2" Content="4.23"/>
 				<ComboBoxItem x:Name="comboBoxItem3" Content="4.24"/>
+                <ComboBoxItem x:Name="comboBoxItem4" Content="4.25"/>
 			</ComboBox>
 
 			<local:LogViewer x:Name="LogControl" Margin="10,377,7.6,47.4" Height="Auto" Width="Auto"/>
 
 			<Label x:Name="StepLabel" Content="Step: " VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,17" Padding="0"/>
 			<Label x:Name="StatusLabel" Content="Status: " VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="80,0,0,17" Padding="0"/>
+            <Button x:Name="Zip" Style="{DynamicResource MaterialDesignFlatButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Zip" Margin="0,0,250,10" Click="Zip_Click"/>
 			<Button x:Name="PostBuildSettings" Style="{DynamicResource MaterialDesignFlatButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Post-Build Settings" Margin="0,0,100,10" Click="PostBuildSettings_Click" />
 			<Button x:Name="BuildRocketUE" Style="{DynamicResource MaterialDesignFlatButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Start Build" Margin="0,0,10,10" Click="BuildRocketUE_Click"/>
 
-			<materialDesign:DialogHost x:Name="AboutDialog" IsOpen="False" CloseOnClickAway="True">
+            <materialDesign:DialogHost x:Name="AboutDialog" IsOpen="False" CloseOnClickAway="True">
 				<materialDesign:DialogHost.DialogContent>
 					<Grid>
 						<Label x:Name="AboutMessageLabel" Content="A helper application designed to create binary version of Unreal Engine 4 from source.&#xA;&#xA;Created by Satheesh (ryanjon2040)&#xA;&#xA;Updated for 4.18 and PS4/Xbox Support by James Baxter (TheJamsh)&#xA;Updated for 4.21 and Lumin support by KarstenMaxim (AlphaSoftLLC)&#xA;Step counter added by Ben Vaccaro (freaksed)&#xA;Some small updates for 4.24 by Christian Walde (wchristian)" />
