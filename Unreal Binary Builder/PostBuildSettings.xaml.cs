@@ -199,7 +199,7 @@ namespace Unreal_Binary_Builder
 					});
 
 					foreach (string file in filesToAdd)
-                    {
+					{
 						zipFile.AddFile(file, Path.GetDirectoryName(file).Replace(InBuildDirectory, string.Empty));
 					}
 
